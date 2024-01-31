@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment Page</title>
+
+    <style>
+        /* Set background color for the entire page */
+        body {
+            background-color: #d9ecc4; /* Set your desired background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Style for the container that holds payment boxes */
+        #paymentContainerWrapper {
+            display: flex;
+            gap: 20px; /* Adjust the gap between payment boxes as needed */
+        }
+
+        /* Style for the individual payment box */
+        .paymentContainer {
+            max-width: 300px; /* Adjust the max-width as needed */
+            padding: 15px; /* Adjust the padding as needed */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the content */
+            background-color: #f4f4f4; /* Set the background color for the container */
+        }
+
+        /* Additional styling for form elements */
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: calc(100% - 16px); /* Adjust the width as needed */
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Style for the logo */
+        .logo {
+            max-width: 50%; /* Adjust the width as needed */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Style for the success message */
+        #successMessage {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="paymentContainerWrapper">
+        <div class="paymentContainer">
+            <img class="logo" src="images/3.jpg" alt="Your Logo">
+            <form id="paymentForm1">
+                <label for="mobileNumber1">Mobile Number:</label>
+                <input type="tel" id="mobileNumber1" name="mobileNumber1" required pattern="[0-9]{10}">
+                <br>
+                <label for="pin1">PIN:</label>
+                <input type="password" id="pin1" name="pin1" required pattern="[0-9]{4}">
+                <br>
+                <button type="button" onclick="submitPayment('1')">Submit Payment</button>
+            </form>
+        </div>
+
+        <div class="paymentContainer">
+            <img class="logo" src="images/4.jpg" alt="Your Logo">
+            <form id="paymentForm2">
+                <label for="mobileNumber2">Mobile Number:</label>
+                <input type="tel" id="mobileNumber2" name="mobileNumber2" required pattern="[0-9]{10}">
+                <br>
+                <label for="pin2">PIN:</label>
+                <input type="password" id="pin2" name="pin2" required pattern="[0-9]{4}">
+                <br>
+                <button type="button" onclick="submitPayment('2')">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success message container -->
+    <div id="successMessage"></div>
+
+    <script>
+        function submitPayment(paymentId) {
+            // Validate the form data (add more validation as needed)
+
+            var mobileNumber = document.getElementById('mobileNumber' + paymentId).value;
+            var pin = document.getElementById('pin' + paymentId).value;
+
+            // Encrypt or hash the PIN before sending it to the server
+            // You should implement proper encryption/hashing on the server side
+
+            // Simulate sending data to the server (replace this with actual AJAX)
+            var data = {
+                mobileNumber: mobileNumber,
+                pin: pin
+            };
+
+            // This is a simplified example; in a real scenario, use AJAX to send data securely to the server
+            console.log("Sending data to the server for payment " + paymentId + ":", data);
+
+            // Simulate success - display success message
+            displaySuccessMessage();
+        }
+
+        function displaySuccessMessage() {
+            var successMessageContainer = document.getElementById('successMessage');
+            successMessageContainer.innerText = 'Payment successful!';
+        }
+    </script>
+</body>
+</html>
